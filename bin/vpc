@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "Usage: $(basename $0) <create|destroy|getip|upssh|list>" 1>&2
+  exit 1
+}
+
+do_create() {
+    curl \
+      --silent \
+      --show-error \
+      -H 'Content-Type: application/json' \
+      -H 'Authorization: Bearer '${TOKEN}'' \
+      -X POST \
+      -d '{"name":     "vader",
+           "size":     "s-1vcpu-1gb-amd",
+           "region":   "atl1",
+           "image":    "debian-12-x64",
+           "vpc_uuid": "445488f1-2c9a-4458-ada5-7c54989848d6",
+           "ssh_keys": ["a7:47:b4:8b:a6:4a:a4:aa:36:e1:1b:11:e2:91:99:9e"]
+          }' \
+      "https://api.digitalocean.com/v2/droplets" | tee ~/tmp/vpc.json
+
+}
+
+do_destroy() {
+    local droplet_id=$(jq .droplet.id < ${VPC_JSON})
+
+    curl \
+      --silent \
+      --show-error \
+      -H "Content-Type: application/json" \
+      -H 'Authorization: Bearer '${TOKEN}'' \
+      -X DELETE \
+      "https://api.digitalocean.com/v2/droplets/${droplet_id}"
+}
+
+do_getip() {
+    local droplet_id=$(jq .droplet.id < ${VPC_JSON})
+
+    curl \
+      --silent \
+      --show-error \
+      -H "Content-Type: application/json" \
+      -H 'Authorization: Bearer '${TOKEN}'' \
+      -X GET \
+      "https://api.digitalocean.com/v2/droplets/${droplet_id}" \
+    \
+    | jq -r .droplet.networks.v4[0].ip_address
+}
+
+do_list() {
+  curl \
+    -H "Content-Type: application/json" \
+    -H 'Authorization: Bearer '${TOKEN}'' \
+    -X GET \
+    "https://api.digitalocean.com/v2/droplets"
+}
+
+do_upssh() {
+  cat <<EOF > ~/.ssh/config.d/vader.conf
+Host vader
+  Hostname $(do_getip)
+EOF
+}
+
+source $HOME/.env
+
+TOKEN=$DIGITALOCEAN_API_KEY
+
+VPC_JSON=$HOME/tmp/vpc.json
+
+case $1 in
+  create)  do_create ;;
+  destroy) do_destroy ;;
+  getip)   do_getip ;;
+  list)    do_list ;;
+  upssh)   do_upssh ;;
+  *) usage ;;
+esac
