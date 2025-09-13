@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+/bin/rm -rf ~/.ssh/pc/jabba-134.199.*-root
+ssh -o PubkeyAuthentication=no beattyga@vader
+
+# ssh -o PreferredAuthentications=password,keyboard-interactive -o PubkeyAuthentication=no beattyga@vader
+
