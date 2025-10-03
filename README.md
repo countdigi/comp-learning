@@ -12,6 +12,10 @@
     - [x] [Basic Mathematical Operations](https://www.codewars.com/kata/57356c55867b9b7a60000bd7/train/python)
     - [ ] [A Needle in the Haystack](https://www.codewars.com/kata/56676e8fabd2d1ff3000000c/train/python)
     - [ ] [Rock Paper Scissors](https://www.codewars.com/kata/5672a98bdbdd995fad00000f/train/python)
+  - 7kyu
+    - [ ] [Vowel Count](https://www.codewars.com/kata/54ff3102c1bad923760001f3/train/python)
+    - [ ] [Get the Middle Character](https://www.codewars.com/kata/56747fd5cb988479af000028/train/python)
+    - [ ] [Isograms](https://www.codewars.com/kata/54ba84be607a92aa900000f1/train/python)
 
 ## meeting
 
