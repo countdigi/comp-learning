@@ -15,7 +15,7 @@ do_create() {
       -d '{"name":     "vader",
            "size":     "s-1vcpu-1gb-amd",
            "region":   "atl1",
-           "image":    "debian-12-x64",
+           "image":    "debian-13-x64",
            "vpc_uuid": "445488f1-2c9a-4458-ada5-7c54989848d6",
            "ssh_keys": ["a7:47:b4:8b:a6:4a:a4:aa:36:e1:1b:11:e2:91:99:9e"]
           }' \
