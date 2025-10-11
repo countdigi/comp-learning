@@ -10,8 +10,8 @@
     - [x] [Even or Odd](https://www.codewars.com/kata/53da3dbb4a5168369a0000fe/train/python)
     - [x] [Find the smallest integer in the array](https://www.codewars.com/kata/55a2d7ebe362935a210000b2/train/python)
     - [x] [Basic Mathematical Operations](https://www.codewars.com/kata/57356c55867b9b7a60000bd7/train/python)
-    - [ ] [A Needle in the Haystack](https://www.codewars.com/kata/56676e8fabd2d1ff3000000c/train/python)
-    - [ ] [Rock Paper Scissors](https://www.codewars.com/kata/5672a98bdbdd995fad00000f/train/python)
+    - [x] [A Needle in the Haystack](https://www.codewars.com/kata/56676e8fabd2d1ff3000000c/train/python)
+    - [x] [Rock Paper Scissors](https://www.codewars.com/kata/5672a98bdbdd995fad00000f/train/python)
   - 7kyu
     - [ ] [Vowel Count](https://www.codewars.com/kata/54ff3102c1bad923760001f3/train/python)
     - [ ] [Get the Middle Character](https://www.codewars.com/kata/56747fd5cb988479af000028/train/python)
