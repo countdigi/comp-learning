@@ -13,9 +13,9 @@
     - [x] [A Needle in the Haystack](https://www.codewars.com/kata/56676e8fabd2d1ff3000000c/train/python)
     - [x] [Rock Paper Scissors](https://www.codewars.com/kata/5672a98bdbdd995fad00000f/train/python)
   - 7kyu
+    - [ ] [Isograms](https://www.codewars.com/kata/54ba84be607a92aa900000f1/train/python)
     - [ ] [Vowel Count](https://www.codewars.com/kata/54ff3102c1bad923760001f3/train/python)
     - [ ] [Get the Middle Character](https://www.codewars.com/kata/56747fd5cb988479af000028/train/python)
-    - [ ] [Isograms](https://www.codewars.com/kata/54ba84be607a92aa900000f1/train/python)
 
 ## meeting
 
