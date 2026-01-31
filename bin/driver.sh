@@ -2,11 +2,6 @@
 
 set -euo pipefail
 
-if [[ $# -ne 1 ]]; then
-  echo "Usage: $0 <password>" 1>&2
-  exit 1
-fi
-
 set -x
 
 bin/vpc create
@@ -21,10 +16,8 @@ ssh -t root@vader "bash vpc-config.sh upos"
 
 sleep 2
 
-ssh -t root@vader "bash vpc-config.sh mkuser beattyga $1"
+ssh -t root@vader "bash vpc-config.sh mkuser beattyga"
 
 sleep 2
 
 bin/vpc getip
-
-bin/test-ssh
