@@ -69,6 +69,8 @@ mkuser() {
   chmod 0600 /home/${user}/.ssh/authorized_keys
 
   chown -R ${user}:${user} /home/${user}
+
+  echo "${user} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-cloud-init-users
 }
 
 #-----------------------------------------------------------------------------------------------------
@@ -77,12 +79,14 @@ mkuser() {
 
 OS_PACKAGES="
   curl
+  fzf
   git
+  htop
+  ipython3
   rsync
   tmux
   tree
   wget
-  ipython3
 "
 
 #-----------------------------------------------------------------------------------------------------
