@@ -6,29 +6,6 @@ set -euo pipefail
 # helper functions
 #-----------------------------------------------------------------------------------------------------
 
-cat_pubkey() {
-  cat <<EOF
-EOF
-}
-
-cat_bashrc() {
-  cat <<EOF
-if [[ \$- != *i* ]]; then return; fi
-
-export EDITOR=vim
-export HISTCONTROL=ignoreboth
-export HISTFILESIZE=-1
-export HISTSIZE=-1
-export PS1='\\n[\$(pwd)]$ '
-
-shopt -s checkwinsize
-
-source /etc/bash_completion
-
-export PATH=\$HOME/opt/jj/bin:\$PATH
-EOF
-}
-
 #-----------------------------------------------------------------------------------------------------
 # commands
 #-----------------------------------------------------------------------------------------------------
@@ -47,6 +24,14 @@ PasswordAuthentication yes
 EOF
 
   service ssh restart
+
+  /bin/mkdir -p /opt/jj/bin /opt/nvim
+
+  curl -sSL https://github.com/jj-vcs/jj/releases/download/v0.39.0/jj-v0.39.0-x86_64-unknown-linux-musl.tar.gz \
+    | tar --extract --gunzip --directory=/opt/jj/bin --file=- ./jj
+
+  curl -sSL https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.tar.gz \
+    | tar --extract --gunzip --directory=/opt/nvim/ --file=- --strip-components=1
 }
 
 mkuser() {
@@ -58,24 +43,18 @@ mkuser() {
     echo "${user}:${1}" | chpasswd
   fi
 
-  cat_bashrc > /home/${user}/.bashrc
-
   mkdir -p /home/${user}/.ssh
 
   chmod -R u=rX,go=-rwx /home/${user}/.ssh
 
-  cat_pubkey > /home/${user}/.ssh/authorized_keys
+  echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICHLtgP5Gb33c9xprXADHX7bS6TpCy2GNKQUUY29gcaI" \
+    > /home/${user}/.ssh/authorized_keys
 
   chmod 0600 /home/${user}/.ssh/authorized_keys
 
   chown -R ${user}:${user} /home/${user}
 
   echo "${user} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-cloud-init-users
-
-  /bin/mkdir -p $HOME/opt/jj/bin
-
-  curl -sSL https://github.com/jj-vcs/jj/releases/download/v0.39.0/jj-v0.39.0-x86_64-unknown-linux-musl.tar.gz \
-    | tar --extract --gunzip --directory=$HOME/opt/jj/bin --file=- ./jj
 }
 
 #-----------------------------------------------------------------------------------------------------

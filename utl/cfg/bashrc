@@ -49,4 +49,5 @@ PS1="${_ylw}\u${_rst}@${_blu}\h${_rst}${_wht}:${_rst}\w\n${_wht}\$${_rst} "
 # extend PATH
 # ---------------------------------------------------------------------------------------------------
 
-export PATH=$HOME/opt/jj/bin:$PATH
+PATH=/opt/jj/bin:$PATH
+PATH=/opt/nvim/bin:$PATH

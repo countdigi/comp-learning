@@ -1,0 +1,45 @@
+[ui]
+'default-command' = ['bash', 'jj log --template=builtin_log_oneline; jj status;']
+'diff-editor' = ':builtin'
+
+[user]
+'email' = 'countskm@gmail.com'
+'name' = 'countskm'
+
+[aliases]
+'bash' = ['util', 'exec', '--', 'bash', '-c']
+'cl'   = ['config', 'list', '--include-defaults']
+'d'    = ['diff']
+'la'   = ['log', '--template', 'builtin_log_oneline', '--revisions', 'all()', '--limit=42']
+'laa'  = ['log', '--template', 'builtin_log_oneline', '--revisions', 'all()']
+'l'    = ['log', '--template', 'builtin_log_oneline']
+'ol'   = ['operation', 'log', '--limit=7', "--reversed", "--no-pager"]
+'s'    = ['status']
+
+[templates]
+'op_log' = 'hr ++ "\n" ++ builtin_op_log_compact'
+'draft_commit_description' = 'builtin_draft_commit_description_with_diff'
+
+[template-aliases]
+'hr' = '"------------------------------------------------------------------------------------------"'
+'format_timestamp(timestamp)' = 'timestamp.local().format("%Y-%m-%d")'
+
+[revsets]
+'bookmark-advance-to' = 'closest_pushable(@)'
+'log' = 'custom_log'
+
+[revset-aliases]
+'closest_pushable(to)' = 'heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'
+'custom_log' = 'present(@) | ancestors(immutable_heads().., 3) | ancestors(trunk(), 3)'
+
+[colors]
+'author' = 'green'
+'bookmarks' = 'yellow'
+'elided' = 'default'
+'operation tags' = 'green'
+'prefix' = 'white'
+'rest' = 'blue'
+
+# example configs:
+#   https://gist.github.com/pksunkara/622bc04242d402c4e43c7328234fd01c
+#   https://github.com/utensil/forest/blob/main/dotfiles/.config/jj/config.toml
