@@ -4,13 +4,13 @@ set -euo pipefail
 
 set -x
 
-bin/vpc create
+utl/bin/vpc create
 
 sleep 2m
 
-bin/vpc upssh
+utl/bin/vpc upssh
 
-scp bin/vpc-config.sh root@vader:
+scp utl/bin/vpc-config.sh root@vader:
 
 ssh -t root@vader "bash vpc-config.sh upos"
 
@@ -20,4 +20,13 @@ ssh -t root@vader "bash vpc-config.sh mkuser beattyga"
 
 sleep 2
 
-bin/vpc getip
+scp utl/cfg/bashrc          beattyga@vader:.bashrc
+
+scp utl/cfg/authorized_keys beattyga@vader:.ssh/
+
+ssh beattyga@vader          "mkdir -p ~/.config/{nvim,jj}"
+
+scp utl/cfg/nvim-init.lua   beattyga@vader:.config/nvim/init.lua
+scp utl/cfg/jj-config.toml  beattyga@vader:.config/jj/config.toml
+
+utl/bin/vpc getip
