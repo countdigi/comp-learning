@@ -47,7 +47,9 @@ mkuser() {
 
   chmod -R u=rX,go=-rwx /home/${user}/.ssh
 
-  echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICHLtgP5Gb33c9xprXADHX7bS6TpCy2GNKQUUY29gcaI" \
+  # this will be overwritten when copying the config but necessary to bootstrap since we remote copy
+  # as non-privleged user
+  echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICHLtgP5Gb33c9xprXADHX7bS6TpCy2GNKQUUY29gcaI countskm-gen-2603" \
     > /home/${user}/.ssh/authorized_keys
 
   chmod 0600 /home/${user}/.ssh/authorized_keys
