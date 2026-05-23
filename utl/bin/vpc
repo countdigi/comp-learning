@@ -58,7 +58,7 @@ do_list() {
 do_upssh() {
   cat <<EOF > ~/.ssh/config.d/vader.conf
 Host vader
-  User beattyga
+  User hawkseye
   Hostname $(do_getip)
 EOF
 }

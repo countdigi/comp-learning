@@ -16,17 +16,17 @@ ssh -t root@vader "bash vpc-config.sh upos"
 
 sleep 2
 
-ssh -t root@vader "bash vpc-config.sh mkuser beattyga"
+ssh -t root@vader "bash vpc-config.sh mkuser hawkseye"
 
 sleep 2
 
-scp utl/cfg/bashrc          beattyga@vader:.bashrc
+scp utl/cfg/bashrc          hawkseye@vader:.bashrc
 
-scp utl/cfg/authorized_keys beattyga@vader:.ssh/
+scp utl/cfg/authorized_keys hawkseye@vader:.ssh/
 
-ssh beattyga@vader          "mkdir -p ~/.config/{nvim,jj}"
+ssh hawkseye@vader          "mkdir -p ~/.config/{nvim,jj}"
 
-scp utl/cfg/nvim-init.lua   beattyga@vader:.config/nvim/init.lua
-scp utl/cfg/jj-config.toml  beattyga@vader:.config/jj/config.toml
+scp utl/cfg/nvim-init.lua   hawkseye@vader:.config/nvim/init.lua
+scp utl/cfg/jj-config.toml  hawkseye@vader:.config/jj/config.toml
 
 utl/bin/vpc getip
